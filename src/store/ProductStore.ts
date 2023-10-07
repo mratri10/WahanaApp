@@ -9,12 +9,16 @@ export type ProductMessageType = {
     content: ProductContentType[]
 }
 export type ProductContentType = {
-    id: number,
-    name: string,
-    displayImageUri: string,
-    downloadImageUri: string,
-    title: string,
-    count: number,
+    id?: number,
+    name?: string,
+    displayImageUri?: string,
+    downloadImageUri?: string,
+    title?: string,
+    count?: number,
+    productName?: string,
+    stock?: number,
+    price?: number,
+    chart?: number,
 }
 class ProductStore {
     constructor() {
@@ -22,12 +26,19 @@ class ProductStore {
     }
 
     dataProduct: ProductType = {}
+    dataProductLocal: ProductContentType[] = []
 
     getDataProduct = async () => {
-        await fetchAPI('image/paging', '', 'GET', {}).then(value => {
+        await fetchAPI('images', '', 'GET', {}).then(value => {
             runInAction(() => {
                 this.dataProduct = value ?? {}
             })
+        })
+    }
+
+    saveDataLocal = (data: ProductContentType[]) => {
+        runInAction(() => {
+            this.dataProductLocal = data
         })
     }
 

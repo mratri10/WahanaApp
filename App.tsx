@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { StoresProvider, stores } from './src/store';
-import axios from 'axios'
+import React from 'react';
+import {StoresProvider, stores} from './src/store';
+import axios from 'axios';
 import RouteApp from './route';
 
 function App() {
@@ -10,8 +10,7 @@ function App() {
     <StoresProvider value={stores}>
       <RouteApp />
     </StoresProvider>
-  )
+  );
 }
 
-
-export default App
+export default App;
